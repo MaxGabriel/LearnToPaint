@@ -31,10 +31,11 @@
     _postText.delegate = self;
     [self viewWillAppear:NO];
 	// Do any additional setup after loading the view.
-    
+    // Gesture to go back a View
     UIGestureRecognizer *swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
     [self.view addGestureRecognizer:swipeGesture];
     
+    // Gesture to take a picture
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
     tapGesture.numberOfTapsRequired = 2;
     [self.view addGestureRecognizer:tapGesture];
@@ -42,6 +43,8 @@
 }
 -(void)viewWillAppear:(BOOL)animated
 {
+    
+    // So the view is show up correctly if device rotated
      float duration = .2;
     if([[UIDevice currentDevice] orientation] == UIInterfaceOrientationLandscapeLeft || [[UIDevice currentDevice] orientation] == UIInterfaceOrientationLandscapeRight)
     {
@@ -128,6 +131,7 @@
 }
 -(void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
+    //change view to be viewed correctly on rotated device
     if(toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || toInterfaceOrientation == UIInterfaceOrientationLandscapeRight)
     {
         CGSize result = [[UIScreen mainScreen] bounds].size;
@@ -216,15 +220,17 @@
 
 -(IBAction)handleSwipe:(UISwipeGestureRecognizer *)sender
 {
+    // go to previous view controller
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(IBAction)handleTap:(UITapGestureRecognizer *)sender
 {
-    
+    // to take a photo
     [self photo];
     
 }
+// Maybe for so the keyboard moves correctly
 //-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 //
 //{
@@ -299,6 +305,8 @@
 
 - (IBAction)selectImage:(UIButton *)sender
 {
+    
+    // get access to saved photos and to pick a photo
     if ([UIImagePickerController isSourceTypeAvailable:
          UIImagePickerControllerSourceTypeSavedPhotosAlbum])
     {
@@ -317,6 +325,7 @@
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
+    // for the user to pick a photo
     NSString *mediaType = info[UIImagePickerControllerMediaType];
     [self dismissViewControllerAnimated:YES completion:nil];
     if ([mediaType isEqualToString:(NSString *)kUTTypeImage])
@@ -329,6 +338,7 @@
 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
+    // Need by apple documentation
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -338,6 +348,8 @@
 }
 -(void)photo
 {
+    
+    // Take a photo APPLE Code
     if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera])
     {
         UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
@@ -352,15 +364,17 @@
 
 - (IBAction)postMessage:(UIButton *)sender
 {
-    NSArray *activityItems;
     
+    
+    NSArray *activityItems;
+    // DO we have both image and text or just text
     if (_postImage.image != nil)
     {
         activityItems = @[_postText.text, _postImage.image];
     } else {
         activityItems = @[_postText.text];
     }
-    
+    // send it out using social media
     UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
     
     [self presentViewController:activityController
@@ -369,6 +383,8 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    
+    // moving view keyboard for visablilty
     UITouch *touch = [[event allTouches] anyObject];
     
     if ([_postText isFirstResponder] && [touch view] !=_postText) {
@@ -394,6 +410,7 @@
 
 -(void)textViewDidEndEditing:(UITextView *)textView
 {
+    //for keyboard moving view
     _editing = false;
     if (self.view.frame.origin.y >= 0)
     {

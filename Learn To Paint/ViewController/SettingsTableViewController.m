@@ -67,7 +67,7 @@
     UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
     
     [cell setBackgroundColor:[UIColor darkTextColor]];
-    [cell setTextColor:[UIColor whiteColor]];
+   
     return cell;
 
 }
