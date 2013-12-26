@@ -14,10 +14,10 @@
 @implementation ArtworkParser
 +(Oeuvre *)loadOeuvre:(NSString *)filePath
 {
-    //NSURL *fileURL = [NSURL URLWithString:@"http://jackcreeksoftware.com/wp-includes/LearnToPaint/Oeuvre.xml"];
+    NSURL *fileURL = [NSURL URLWithString:@"http://jackcreeksoftware.com/wp-includes/LearnToPaint/Oeuvre.xml"];
     
-    //NSData *xmlData = [[NSMutableData alloc] initWithContentsOfURL:fileURL];
-    NSData *xmlData = [[NSMutableData alloc] initWithContentsOfFile:filePath];
+    NSData *xmlData = [[NSMutableData alloc] initWithContentsOfURL:fileURL];
+//    NSData *xmlData = [[NSMutableData alloc] initWithContentsOfFile:filePath];
     NSError *error;
     
     GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData options:0 error:&error];

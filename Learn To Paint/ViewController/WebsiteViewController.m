@@ -28,14 +28,6 @@
 
 @implementation WebsiteViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 -(void)viewWillAppear:(BOOL)animated
 {
     //Check orientation
@@ -244,12 +236,6 @@
     
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
-
-
 -(void)loadUI
 {
     
@@ -423,9 +409,4 @@
     // NSLog(@"Downloaded: %d out of %d", bytes, totalBytes);
 }
 
-- (void)viewDidUnload {
-    [self setEmailButton:nil];
-    [self setTableFrame:nil];
-    [super viewDidUnload];
-}
 @end
