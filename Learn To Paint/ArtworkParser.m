@@ -30,46 +30,15 @@
     NSArray *combinationArtworks = [doc nodesForXPath:@"//Oeuvre/Artwork" error:nil];
     for(GDataXMLElement *combinationArtwork in combinationArtworks)
     {
-        // Let's fill these in!
-        NSString *title;
-        NSString *cost;
-        NSString *file;
-        NSString *description;
         
-        // Title
-        NSArray *titles = [combinationArtwork elementsForName:@"Title"];
-        if(titles.count > 0)
-        {
-            GDataXMLElement * firstTitle = (GDataXMLElement *) [titles objectAtIndex:0];
-            title = firstTitle.stringValue;
-            
-        }else continue;
+        NSString *title = [[[combinationArtwork elementsForName:@"Title"] firstObject] stringValue];
+        NSString *cost  = [[[combinationArtwork elementsForName:@"Price"] firstObject] stringValue];
+        NSString *description = [[[combinationArtwork elementsForName:@"Detail"] firstObject] stringValue];
         
-        // cost
-        NSArray *costs = [combinationArtwork elementsForName:@"Price"];
-        if(costs.count > 0)
-        {
-            GDataXMLElement *firstCost = (GDataXMLElement *) [costs objectAtIndex:0];
-            cost = firstCost.stringValue;
-        }else continue;
+        NSString *partialURL = [[[combinationArtwork elementsForName:@"ImageFile"] firstObject] stringValue];
+        NSURL *imageURL = [NSURL URLWithString:[@"http://jackcreeksoftware.com/wp-includes/LearnToPaint/" stringByAppendingString:partialURL]];
         
-        // Detail
-        NSArray *details = [combinationArtwork elementsForName:@"Detail"];
-        if(details.count > 0)
-        {
-            GDataXMLElement *firstDetail = (GDataXMLElement *) [details objectAtIndex:0];
-            description = firstDetail.stringValue;
-        }else continue;
-        
-        // file
-        NSArray *files = [combinationArtwork elementsForName:@"ImageFile"];
-        if(files.count > 0)
-        {
-            GDataXMLElement *firstFile = (GDataXMLElement *) [files objectAtIndex:0];
-            file = firstFile.stringValue;
-        } else continue;
-        
-        Artwork *artwork = [[Artwork alloc] initWithTitle:title Cost:cost Detail:description File:file ];
+        Artwork *artwork = [[Artwork alloc] initWithTitle:title Cost:cost Detail:description imageURL:imageURL];
         [oeuvre.artworks addObject:artwork];
         
         

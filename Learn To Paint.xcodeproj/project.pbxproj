@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		509D4C4B186CD03C00A3F08D /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509D4C4A186CD03C00A3F08D /* SDWebImage.framework */; };
+		509D4C4D186CD17100A3F08D /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509D4C4C186CD17100A3F08D /* ImageIO.framework */; };
 		CD2A3A1A180CC0A50026BA02 /* WebsiteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD2A3A19180CC0A50026BA02 /* WebsiteViewController.m */; };
 		CD2A3A1C180CC2AA0026BA02 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD2A3A1B180CC2AA0026BA02 /* StoreKit.framework */; };
 		CD2A3A1E180CC2D20026BA02 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD2A3A1D180CC2D20026BA02 /* MediaPlayer.framework */; };
@@ -78,6 +80,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		509D4C4A186CD03C00A3F08D /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = "<group>"; };
+		509D4C4C186CD17100A3F08D /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		CD2A3A18180CC0A50026BA02 /* WebsiteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebsiteViewController.h; path = ViewController/WebsiteViewController.h; sourceTree = "<group>"; };
 		CD2A3A19180CC0A50026BA02 /* WebsiteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebsiteViewController.m; path = ViewController/WebsiteViewController.m; sourceTree = "<group>"; };
 		CD2A3A1B180CC2AA0026BA02 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -175,6 +179,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				509D4C4D186CD17100A3F08D /* ImageIO.framework in Frameworks */,
 				CDA952411863639D00AF1FFB /* libxml2.dylib in Frameworks */,
 				CD2A3A26180CC3000026BA02 /* MessageUI.framework in Frameworks */,
 				CD2A3A23180CC2F80026BA02 /* AddressBook.framework in Frameworks */,
@@ -183,6 +188,7 @@
 				CD2A3A1E180CC2D20026BA02 /* MediaPlayer.framework in Frameworks */,
 				CD2A3A1C180CC2AA0026BA02 /* StoreKit.framework in Frameworks */,
 				CD324A351804564800735CD1 /* UIKit.framework in Frameworks */,
+				509D4C4B186CD03C00A3F08D /* SDWebImage.framework in Frameworks */,
 				CD324A371804564800735CD1 /* Foundation.framework in Frameworks */,
 				CD324A391804564800735CD1 /* CoreGraphics.framework in Frameworks */,
 			);
@@ -243,6 +249,8 @@
 		CD324A331804564800735CD1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				509D4C4C186CD17100A3F08D /* ImageIO.framework */,
+				509D4C4A186CD03C00A3F08D /* SDWebImage.framework */,
 				CDA952401863639D00AF1FFB /* libxml2.dylib */,
 				CD2A3A25180CC3000026BA02 /* MessageUI.framework */,
 				CD2A3A21180CC2F80026BA02 /* AddressBook.framework */,
@@ -671,10 +679,15 @@
 		CD324A581804564800735CD1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/Max/Documents/Clones/throwaway/LearnToPaint,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Learn To Paint/Learn To Paint-Prefix.pch";
 				INFOPLIST_FILE = "Learn To Paint/Learn To Paint-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -683,10 +696,15 @@
 		CD324A591804564800735CD1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/Max/Documents/Clones/throwaway/LearnToPaint,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Learn To Paint/Learn To Paint-Prefix.pch";
 				INFOPLIST_FILE = "Learn To Paint/Learn To Paint-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

@@ -9,10 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @interface Artwork : NSObject
-@property (nonatomic, strong) NSString *title;
-@property (nonatomic, strong) NSString *cost;
-@property (nonatomic, strong) NSString *detail;
-@property (nonatomic, strong) NSString *file;
+@property (nonatomic, strong, readonly) NSString *title;
+@property (nonatomic, strong, readonly) NSString *cost;
+@property (nonatomic, strong, readonly) NSString *detail;
+@property (nonatomic, strong, readonly) NSString *file;
+@property (nonatomic, strong, readonly) NSURL *imageURL;
 
--(id) initWithTitle:(NSString *)tmpTitle Cost:(NSString *)tmpCost Detail:(NSString *)tmpDetail File:(NSString *)tmpFile;
+- (instancetype) initWithTitle:(NSString *)tmpTitle Cost:(NSString *)tmpCost Detail:(NSString *)tmpDetail imageURL:(NSURL *)imageURL;
 @end

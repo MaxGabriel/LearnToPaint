@@ -13,6 +13,7 @@
 #import "SharedData.h"
 #import "Download.h"
 #import "MBProgressHUD.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 
 @interface WebsiteViewController ()
@@ -225,10 +226,12 @@
     NSString *filePath = [documentsPath stringByAppendingPathComponent:@"Oeuvre.xml"];
     _prefixFile = documentsPath;
     
-    if([[NSFileManager defaultManager] fileExistsAtPath:filePath])
-    {
-        _oeuvre = [ArtworkParser loadOeuvre:filePath];
-    }
+//    if([[NSFileManager defaultManager] fileExistsAtPath:filePath])
+//    {
+//        
+//    }
+    
+    _oeuvre = [ArtworkParser loadOeuvre:filePath];
     
     [self loadUI];
     
@@ -347,13 +350,18 @@
 {
     [_mainTable deselectRowAtIndexPath:indexPath animated:YES];
     
+    
+    Artwork *artwork = _oeuvre.artworks[indexPath.row];
+    
+    
     _indexValue = [indexPath row];
     
-    NSString *stringCost = [NSString stringWithFormat:@"$ %@", [_oeuvre.artworks[_indexValue] cost]];
-    _artworkTitle.text = [_oeuvre.artworks[_indexValue] title];
-    _artworkDetail.text = [_oeuvre.artworks[_indexValue] detail];
-    _artworkCost.text = stringCost;
-    _artworkPhoto.image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@",_prefixFile, [_oeuvre.artworks[_indexValue] file]]];
+    
+    _artworkTitle.text = artwork.title;
+    _artworkDetail.text = artwork.detail;
+    _artworkCost.text = [NSString stringWithFormat:@"$ %@", artwork.cost];
+    [_artworkPhoto setImageWithURL:artwork.imageURL];
+    
 }
 
 #pragma mark - Download Delegate Methods
